@@ -2,25 +2,24 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: kubevirt
-  namespace: argocd
+  namespace: cfw-argocd
 spec:
   generators:
-  # Only select external clusters, excludes local cluster
-  - clusters:
-      selector:
-        matchLabels:
-          argocd.argoproj.io/secret-type: cluster
+  - list:
+      elements:
+      - cluster: cs00167-we-02-aks
+        url: https://kubernetes.default.svc
   template:
     metadata:
-      name: "{{nameNormalized}}-kubevirt"
+      name: "kubevirt"
     spec:
       project: default
       source:
-        repoURL: https://github.com/0xFelix/gitops-demo.git
+        repoURL: https://github.com/Techwidot/kubevirt.git
         targetRevision: HEAD
         path: applicationsets/kubevirt/manifests
       destination:
-        server: "{{server}}"
+        server: https://kubernetes.default.svc
         namespace: kubevirt
       syncPolicy:
         automated:
