@@ -6,7 +6,7 @@ spec:
   running: true
   dataVolumeTemplates:
   - metadata:
-      name: demo-vm-ds-fedora
+      name: fedora
     spec:
       sourceRef:
         kind: DataSource
@@ -24,8 +24,8 @@ spec:
           guest: 1024M
       volumes:
       - dataVolume:
-          name: demo-vm-ds-fedora
-        name: demo-vm-ds-fedora
+          name: fedora
+        name: fedora
       - cloudInitNoCloud:
           userData: |-
             #cloud-config
