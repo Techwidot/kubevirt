@@ -16,7 +16,7 @@ spec:
         resources: {}
   template:
     spec:
-      terminationGracePeriodSeconds: 180
+      terminationGracePeriodSeconds: 1200
       domain:
         devices:
           rng: {}
